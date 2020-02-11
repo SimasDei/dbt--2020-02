@@ -1,0 +1,22 @@
+{
+  "name": "dbt--2020-02",
+  "version": "1.0.0",
+  "description": "\"# dbt--2020-02\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SimasDei/dbt--2020-02.git"
+  },
+  "author": "Simas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SimasDei/dbt--2020-02/issues"
+  },
+  "homepage": "https://github.com/SimasDei/dbt--2020-02#readme",
+  "dependencies": {
+    "expresss": "0.0.0"
+  }
+}
