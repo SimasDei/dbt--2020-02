@@ -4,7 +4,8 @@
   "description": "\"# dbt--2020-02\"",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon index"
   },
   "repository": {
     "type": "git",
@@ -17,6 +18,10 @@
   },
   "homepage": "https://github.com/SimasDei/dbt--2020-02#readme",
   "dependencies": {
-    "expresss": "0.0.0"
+    "cors": "^2.8.5"
+  },
+  "devDependencies": {
+    "express": "^4.17.1",
+    "nodemon": "^2.0.2"
   }
 }
