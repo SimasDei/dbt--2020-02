@@ -1,0 +1,20 @@
+.array {
+  display: flex;
+  align-items: center;
+}
+
+.array__item {
+  display: flex;
+  padding: 0.8rem;
+  height: 4.5rem;
+  width: 4.5rem;
+}
+
+.array__item__input {
+  height: 100%;
+  width: 100%;
+  border: none;
+  background-color: #fff;
+  text-align: center;
+  border-radius: 5px;
+}
