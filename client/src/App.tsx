@@ -1,7 +1,7 @@
 //@ts-nocheck
 import React, { useEffect, useState } from 'react';
 
-import { getNumberArray } from './api';
+import { getNumberArray, checkNumberArray } from './api';
 import './app.css';
 
 import { ArrayItems } from './components';
@@ -21,10 +21,15 @@ const App = () => {
       target: { value },
     } = e;
     setArrayItems(state => {
+      console.log({ state });
       state[index] = +value;
-      return state;
+      return [...state];
     });
-    console.log(value, arrayItems);
+  };
+
+  const onClickHandler = async () => {
+    const result = await checkNumberArray(arrayItems);
+    console.log(result);
   };
 
   if (!arrayItems.length) return <div className='App'>Loading...</div>;
@@ -32,6 +37,7 @@ const App = () => {
   return (
     <div className='App'>
       <ArrayItems arrayItems={arrayItems} onChangeHandler={onChangeHandler} />
+      <button onClick={onClickHandler}>Submit</button>
     </div>
   );
 };

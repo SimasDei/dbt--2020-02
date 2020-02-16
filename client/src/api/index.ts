@@ -14,3 +14,22 @@ export const getNumberArray = async () => {
     return Promise.reject(error);
   }
 };
+
+export const checkNumberArray = async (arrayItems: number[]) => {
+  try {
+    const {
+      data: { success, data },
+    } = await axios({
+      method: 'POST',
+      url: 'http://localhost:5000/api/v1/algo',
+      data: {
+        result: arrayItems,
+      },
+    });
+
+    if (success) return Promise.resolve({ result: data.result });
+    return Promise.resolve(false);
+  } catch (error) {
+    return Promise.reject(error);
+  }
+};
