@@ -7,6 +7,6 @@ const router = express.Router();
 router
   .route('/')
   .post(algoController.getResult)
-  .get(algoController.getTest);
+  .get(algoController.getArray);
 
 module.exports = router;
