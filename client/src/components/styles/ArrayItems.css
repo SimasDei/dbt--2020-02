@@ -18,3 +18,19 @@
   text-align: center;
   border-radius: 5px;
 }
+
+.array__item__img {
+  height: 100%;
+  width: 100%;
+}
+
+.results {
+  margin-top: 1.6rem;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.array__status {
+  margin-bottom: 0.8rem;
+}
