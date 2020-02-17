@@ -1,34 +1,39 @@
 exports.getResult = async (req, res) => {
   const { result } = req.body;
-  console.log({ result });
 
   const jump = numArray => {
-    const arrayLength = numArray.length;
-    let steps = numArray[0];
-    let range = numArray[0];
-    let jump = 1;
-    let winnable = false;
+    const n = numArray.length;
     const result = {
-      range,
-      steps,
-      jump,
-      winnable,
+      numArray,
+      maxReach: numArray[0],
+      step: numArray[0],
+      jump: 1,
+      end: n - 1,
+      position: 0,
+      winnable: false,
+      jumps: [0],
     };
 
-    if (arrayLength <= 1 || numArray[0] === 0) return result;
+    if (numArray[0] === 0) return result;
 
-    for (let position = 1; numArray[position - 1] < arrayLength; position += 1) {
-      if (position === arrayLength - 1) return result;
-      if (position + numArray[position] > range) {
-        range = position + numArray[position];
-        steps -= 1;
-      }
-      if (steps === 0) {
-        jump += 1;
-        steps = range - position;
+    while (result.position < n) {
+      result.position += 1;
+
+      if (result.position === result.end) {
+        result.winnable = true;
+        return result;
       }
 
-      console.log({ range, steps, jump, position });
+      result.maxReach = Math.max(result.maxReach, result.position + numArray[result.position]);
+      result.jumps[result.position] = result.jump;
+      result.step -= 1;
+
+      if (result.step === 0) {
+        result.jump += 1;
+
+        if (result.position >= result.maxReach) return result;
+        result.step = result.maxReach - result.position;
+      }
     }
 
     return result;
