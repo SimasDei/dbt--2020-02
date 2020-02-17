@@ -1,13 +1,22 @@
-//@ts-nocheck
 import React, { useEffect, useState } from 'react';
 
 import { getNumberArray, checkNumberArray } from './api';
 import './app.css';
 
-import { ArrayItems } from './components';
+import { ArrayItems, ArrayResults } from './components';
 
 const App = () => {
   const [arrayItems, setArrayItems] = useState([]);
+  const [calculated, setCalculated] = useState({
+    numArray: [],
+    maxReach: null,
+    step: null,
+    jump: null,
+    end: null,
+    position: null,
+    jumps: [],
+    winnable: false,
+  });
 
   useEffect(() => {
     (async () => {
@@ -21,15 +30,32 @@ const App = () => {
       target: { value },
     } = e;
     setArrayItems(state => {
-      console.log({ state });
+      //@ts-ignore
       state[index] = +value;
       return [...state];
     });
   };
 
   const onClickHandler = async () => {
+    if (JSON.stringify(calculated.numArray) === JSON.stringify(arrayItems)) {
+      setCalculated(calculated);
+      return;
+    }
+
     const result = await checkNumberArray(arrayItems);
-    console.log(result);
+    setCalculated(result);
+  };
+
+  const renderAnswer = () => {
+    if (!calculated.numArray.length) return;
+
+    return (
+      <ArrayResults
+        winnable={calculated.winnable}
+        jumps={calculated.jumps}
+        blocks={calculated.numArray}
+      />
+    );
   };
 
   if (!arrayItems.length) return <div className='App'>Loading...</div>;
@@ -37,7 +63,10 @@ const App = () => {
   return (
     <div className='App'>
       <ArrayItems arrayItems={arrayItems} onChangeHandler={onChangeHandler} />
-      <button onClick={onClickHandler}>Submit</button>
+      <button className='btn' onClick={onClickHandler}>
+        Submit
+      </button>
+      {renderAnswer()}
     </div>
   );
 };
